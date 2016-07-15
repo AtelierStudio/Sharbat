@@ -17,7 +17,10 @@
         </activity>
         <activity android:name=".activity.AppInfoActivity" />
         <activity android:name=".activity.SplashActivity" />
-        <activity android:name=".activity.PasswordAuthActivity"></activity>
+        <activity android:name=".activity.PasswordAuthActivity" />
+        <activity android:name=".activity.InfoActivity" />
+        <activity android:name=".activity.NewCategoryActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
     </application>
 
 </manifest>

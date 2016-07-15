@@ -10,6 +10,6 @@ public class PasswordAuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(Rg.layout.activity_password_auth);
+        setContentView(R.layout.activity_password_auth);
     }
 }
