@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AppInfoActivity"></activity>
+        <activity android:name=".activity.AppInfoActivity" />
+        <activity android:name=".activity.SplashActivity" />
+        <activity android:name=".activity.PasswordAuthActivity"></activity>
     </application>
 
 </manifest>
