@@ -3,5 +3,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <ImageView
+            android:id="@+id/main_tab_mailbox"
+            android:scaleType="centerInside"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/btn_tab_mailbox_off" />
+        <ImageView
+            android:id="@+id/main_tab_home"
+            android:scaleType="centerInside"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/btn_tab_home_off" />
+        <ImageView
+            android:id="@+id/main_tab_settings"
+            android:scaleType="centerInside"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/btn_tab_settings_off" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/main_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
