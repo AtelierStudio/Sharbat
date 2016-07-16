@@ -20,7 +20,9 @@
         <activity android:name=".activity.PasswordAuthActivity" />
         <activity android:name=".activity.InfoActivity" />
         <activity android:name=".activity.NewCategoryActivity" />
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.CustomSpamSetActivity" />
+        <activity android:name=".activity.MailViewActivity"></activity>
     </application>
 
 </manifest>
