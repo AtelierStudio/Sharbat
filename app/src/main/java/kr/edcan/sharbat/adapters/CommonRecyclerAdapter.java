@@ -46,11 +46,15 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         data = arrayList.get(position);
-        holder.from.setText(data.getFrom());
-        holder.address.setText(data.getAddress());
-        holder.title.setText(data.getTitle());
-        holder.content.setText(data.getContent());
-        holder.date.setText(data.getDate().toString());
+        if (position == 0) holder.header.setVisibility(View.VISIBLE);
+        else {
+            holder.foreground.setVisibility(View.VISIBLE);
+            holder.from.setText(data.getFrom());
+            holder.address.setText(data.getAddress());
+            holder.title.setText(data.getTitle());
+            holder.content.setText(data.getContent());
+            holder.date.setText(data.getDate().toString());
+        }
     }
 
     @Override
@@ -60,7 +64,8 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView from, address, title, content, date;
-        RelativeLayout foreground;
+        RelativeLayout foreground, header;
+
         public ViewHolder(View itemView) {
             super(itemView);
             from = (TextView) itemView.findViewById(R.id.home_content_from);
@@ -69,6 +74,7 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
             content = (TextView) itemView.findViewById(R.id.home_content_content);
             date = (TextView) itemView.findViewById(R.id.home_content_date);
             foreground = (RelativeLayout) itemView.findViewById(R.id.home_content_foreground);
+            header = (RelativeLayout) itemView.findViewById(R.id.home_content_header);
             foreground.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
