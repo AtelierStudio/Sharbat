@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -58,7 +60,7 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView from, address, title, content, date;
-
+        RelativeLayout foreground;
         public ViewHolder(View itemView) {
             super(itemView);
             from = (TextView) itemView.findViewById(R.id.home_content_from);
@@ -66,6 +68,13 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
             title = (TextView) itemView.findViewById(R.id.home_content_title);
             content = (TextView) itemView.findViewById(R.id.home_content_content);
             date = (TextView) itemView.findViewById(R.id.home_content_date);
+            foreground = (RelativeLayout) itemView.findViewById(R.id.home_content_foreground);
+            foreground.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "sibalblaalall", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

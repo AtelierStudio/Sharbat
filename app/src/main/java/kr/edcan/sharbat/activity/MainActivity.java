@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -18,9 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import kr.edcan.sharbat.R;
+import kr.edcan.sharbat.adapters.CommonRecyclerAdapter;
 import kr.edcan.sharbat.adapters.SettingsAdapter;
+import kr.edcan.sharbat.models.MainRecycleData;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -155,10 +157,16 @@ class PagerAdapterClass extends PagerAdapter {
     }
 
     void setSecondPage(View v) {
-        v = mInflater.inflate(R.layout.main_second_page, null);
         RecyclerView view = (RecyclerView) v.findViewById(R.id.main_recyclerView);
         view.setHasFixedSize(true);
         view.setLayoutManager(new LinearLayoutManager(context));
+        ArrayList<MainRecycleData> arr = new ArrayList<>();
+        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "/ kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
+        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회"," kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
+        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
+        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
+        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
+        view.setAdapter(new CommonRecyclerAdapter(context, arr));
     }
 
     void setThirdPage(View v) {

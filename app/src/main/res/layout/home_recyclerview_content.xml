@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:foreground="?attr/selectableItemBackground"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/home_content_foreground"
+    android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,6 +23,7 @@
                 android:id="@+id/home_content_from"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:text="Junior Software Cup"
                 android:textColor="#4B4B4B"
                 android:textSize="15sp"
@@ -30,9 +34,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="/ kotohana5706@edcan.kr"
                 android:textColor="#b5b5b5"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
         <TextView
@@ -40,6 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="This is title of mail message."
             android:textSize="13sp"
             android:textStyle="bold" />
@@ -48,6 +57,7 @@
             android:id="@+id/home_content_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="2"
             android:text="Hi there. This is Junior Software Cup Runners. is Junior Software Cup Runners. ."
             android:textSize="10sp" />
@@ -61,11 +71,18 @@
             android:text="2016.07.11"
             android:textColor="#b5b5b5"
             android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#88ABABAB" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_mail_box_files" />
 </RelativeLayout>
