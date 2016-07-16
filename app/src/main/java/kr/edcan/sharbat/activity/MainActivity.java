@@ -149,6 +149,8 @@ class PagerAdapterClass extends PagerAdapter {
         return null;
     }
 
+
+    /* Replaces Fragment, setting Page 1,2,3*/
     void setFirstPage(View v) {
     }
 
@@ -188,7 +190,7 @@ class PagerAdapterClass extends PagerAdapter {
         settings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                switch (position){
+                switch (position) {
                     case 1:
                         /* 전체 메일 새로고침 */
                         break;
