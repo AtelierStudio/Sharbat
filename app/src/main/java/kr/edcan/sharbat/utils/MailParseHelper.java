@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 
@@ -24,25 +25,29 @@ import kr.edcan.sharbat.models.MailData;
 public class MailParseHelper {
     Context c;
     Realm realm;
+    String[] popAddress = new String[]{"smtp.gmail.com", "pop.naver.com", "pop.worksmobile.com"};
 
     public MailParseHelper(Context c) {
         this.c = c;
-        String[] credentials = {"pop.naver.com", "sedah1999", "intel_inside"};
-//        new MailParseClass().execute(credentials[0], credentials[1], credentials[2]);
-        realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        RealmResults<MailData> realmResults = realm.where(MailData.class).findAll();
-        Log.e("asdf", realmResults.size()+"");
-        
+        String[] credentials = {"pop.naver.com", "fluorine2015@gmail.com", "duftlagltkfwk!"};
     }
 
-
-
-    class MailParseClass extends AsyncTask<String, String, Void> {
-        String host, username, password;
-        Properties props;
-        Message[] message;
+    public static class MailParseClass extends AsyncTask<String, String, Void> {
         Session session;
+        Properties props;
+        Store store;
+        Message[] message;
+        int type;
+        String id, password;
+        Realm realm;
+        String[] popAddress = new String[]{"smtp.gmail.com", "pop.naver.com", "pop.worksmobile.com"};
+
+
+        public MailParseClass(int type, String id, String password) {
+            this.type = type;
+            this.id = id;
+            this.password = password;
+        }
 
         @Override
         protected void onPreExecute() {
@@ -56,12 +61,13 @@ public class MailParseHelper {
             props = new Properties();
             session = Session.getDefaultInstance(props, null);
             try {
-                Store store = session.getStore("pop3");
-                store.connect(strings[0], strings[1], strings[2]);
+                store = session.getStore((type == 0) ? "imaps" : "pop3");
+                store.connect(popAddress[type], id, password);
                 Folder folder = store.getFolder("INBOX");
                 folder.open(Folder.READ_ONLY);
                 message = folder.getMessages();
                 for (int i = message.length - 1; i >= 0; i--) {
+                    if (message.length - i > 500) break;
                     try {
                         Log.e("asdf", i + "/" + (message.length - 1) + "개 처리중 : " + message[i].getSubject());
                         MailData data = realm.createObject(MailData.class);
@@ -84,6 +90,41 @@ public class MailParseHelper {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+        }
+    }
+
+    public static class LoginCheckClass extends AsyncTask<String, Boolean, Boolean> {
+        Properties props;
+        Message[] message;
+        Session session;
+        int type;
+        String[] popAddress = new String[]{"smtp.gmail.com", "pop.naver.com", "pop.worksmobile.com"};
+        String id, password;
+
+        public LoginCheckClass(int type, String id, String password) {
+            this.type = type;
+            this.id = id;
+            this.password = password;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            props = new Properties();
+            session = Session.getDefaultInstance(props, null);
+            Store store = null;
+            try {
+                store = session.getStore((type == 0) ? "imaps" : "pop3");
+                store.connect(popAddress[type], id, password);
+                return true;
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
     }
 }

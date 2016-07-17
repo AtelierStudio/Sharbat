@@ -1,47 +1,37 @@
 package kr.edcan.sharbat.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-
-import java.util.Date;
-import java.util.Properties;
-import java.util.Random;
-
-import javax.mail.Folder;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Store;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 import kr.edcan.sharbat.R;
-import kr.edcan.sharbat.models.MailData;
-import kr.edcan.sharbat.utils.MailParseHelper;
+import kr.edcan.sharbat.utils.DataManager;
 
 public class SplashActivity extends AppCompatActivity {
 
-    Realm realm;
+    DataManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        startActivity(new Intent(getApplicationContext(), TutorialActivity.class));
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                finish();
-//            }
-//        }, 1000);
-//        new MailParseHelper(getApplicationContext());
+        manager = new DataManager();
+        manager.initializeManager(getApplicationContext());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (manager.getIsFirst()) {
+                    startActivity(new Intent(getApplicationContext(), TutorialActivity.class));
+                    finish();
+                }
+                else {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                }
+            }
+        }, 1000);
     }
-
 }
 

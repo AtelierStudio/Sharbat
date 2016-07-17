@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SHARBat</string>
 
+    <string name="gmail_imap">imap.gmail.com</string>
     <string name="naver_pop3">pop.naver.com</string>
     <string name="works_pop3">pop.worksmobile.com</string>
-    <string name="gmail_imap">imap.gmail.com</string>
 </resources>

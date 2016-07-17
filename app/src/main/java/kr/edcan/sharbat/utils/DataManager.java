@@ -12,8 +12,12 @@ import android.util.Log;
 
 public class DataManager {
     /* Data Keys */
+    public static final String LOGIN_TYPE = "login_type";
+    public static final String ID = "id";
+    public static final String PW= "pw";
     public static final String AUTO_FILTER = "auto_filter";
     public static final String AUTO_DELETE = "auto_delete";
+    public static final String IS_FIRST = "isFist";
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private Context context;
@@ -36,6 +40,10 @@ public class DataManager {
         editor.putBoolean(key, data);
         editor.apply();
     }
+    public void save(String key, int data) {
+        editor.putInt(key, data);
+        editor.apply();
+    }
 
     public void removeAllData() {
         editor.clear();
@@ -52,6 +60,9 @@ public class DataManager {
 
     public boolean getBoolean(String key) {
         return preferences.getBoolean(key, false);
+    }
+    public boolean getIsFirst(){
+        return preferences.getBoolean(IS_FIRST, true);
     }
 
     public long getLong(String key) {
