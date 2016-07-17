@@ -25,7 +25,8 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CustomSpamSetActivity" />
         <activity android:name=".activity.MailViewActivity" />
-        <activity android:name=".activity.DeveloperActivity"></activity>
+        <activity android:name=".activity.DeveloperActivity" />
+        <activity android:name=".activity.SpamMailSettingActivity"></activity>
     </application>
 
 </manifest>
