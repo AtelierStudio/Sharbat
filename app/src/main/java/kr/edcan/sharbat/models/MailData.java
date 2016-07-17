@@ -12,6 +12,7 @@ import io.realm.annotations.PrimaryKey;
 public class MailData extends RealmObject {
     String title;
     String content;
+    Date receivedDate;
 
     public void setTitle(String title) {
         this.title = title;
@@ -27,5 +28,13 @@ public class MailData extends RealmObject {
 
     public String getContent() {
         return content;
+    }
+
+    public Date getReceivedDate() {
+        return receivedDate;
+    }
+
+    public void setReceivedDate(Date receivedDate) {
+        this.receivedDate = receivedDate;
     }
 }

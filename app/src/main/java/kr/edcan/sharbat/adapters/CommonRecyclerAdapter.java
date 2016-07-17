@@ -5,12 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import kr.edcan.sharbat.R;
@@ -46,15 +44,15 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         data = arrayList.get(position);
-//        if (position == 0) holder.header.setVisibility(View.VISIBLE);
-//        else {
+        if (position == 0) holder.header.setVisibility(View.VISIBLE);
+        else {
             holder.foreground.setVisibility(View.VISIBLE);
             holder.from.setText(data.getFrom());
             holder.address.setText(data.getAddress());
             holder.title.setText(data.getTitle());
             holder.content.setText(data.getContent());
             holder.date.setText(data.getDate().toString());
-//        }
+        }
     }
 
     @Override
