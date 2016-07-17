@@ -12,6 +12,8 @@ import android.util.Log;
 
 public class DataManager {
     /* Data Keys */
+    public static final String AUTO_FILTER = "auto_filter";
+    public static final String AUTO_DELETE = "auto_delete";
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private Context context;
@@ -28,6 +30,10 @@ public class DataManager {
 
     public void save(String key, String data) {
         editor.putString(key, data);
+        editor.apply();
+    }
+    public void save(String key, boolean data) {
+        editor.putBoolean(key, data);
         editor.apply();
     }
 

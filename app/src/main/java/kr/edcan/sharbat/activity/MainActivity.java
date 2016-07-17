@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setDefault();
-        startActivity(new Intent(getApplicationContext(), DeveloperActivity.class));
     }
 
     private void setDefault() {
@@ -218,12 +217,15 @@ class PagerAdapterClass extends PagerAdapter {
                         break;
                     case 6:
                         /* 스팸 메일에 대한 정책 설정 */
+                        context.startActivity(new Intent(context, SpamMailSettingActivity.class));
                         break;
                     case 7:
                         /* 앱 시작 시 암호걸기 */
+                        context.startActivity(new Intent(context, PasswordAuthActivity.class));
                         break;
                     case 8:
                         /*앱 버전 정보*/
+                        context.startActivity(new Intent(context, DeveloperActivity.class));
                         break;
                 }
             }

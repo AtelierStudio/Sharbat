@@ -31,9 +31,11 @@
                 android:text="개의 메일이 메일함에 있습니다." />
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:background="#88ABABAB" />
         </LinearLayout>
     </RelativeLayout>
@@ -115,7 +117,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:background="#88ABABAB" />
         </LinearLayout>
 
