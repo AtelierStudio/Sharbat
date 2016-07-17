@@ -46,15 +46,15 @@ public class CommonRecyclerAdapter extends RecyclerView.Adapter<CommonRecyclerAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         data = arrayList.get(position);
-        if (position == 0) holder.header.setVisibility(View.VISIBLE);
-        else {
+//        if (position == 0) holder.header.setVisibility(View.VISIBLE);
+//        else {
             holder.foreground.setVisibility(View.VISIBLE);
             holder.from.setText(data.getFrom());
             holder.address.setText(data.getAddress());
             holder.title.setText(data.getTitle());
             holder.content.setText(data.getContent());
             holder.date.setText(data.getDate().toString());
-        }
+//        }
     }
 
     @Override

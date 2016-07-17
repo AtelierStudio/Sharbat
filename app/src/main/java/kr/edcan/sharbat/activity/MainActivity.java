@@ -20,9 +20,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 import kr.edcan.sharbat.R;
 import kr.edcan.sharbat.adapters.CommonRecyclerAdapter;
 import kr.edcan.sharbat.adapters.SettingsAdapter;
+import kr.edcan.sharbat.models.MailData;
 import kr.edcan.sharbat.models.MainRecycleData;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -161,12 +164,13 @@ class PagerAdapterClass extends PagerAdapter {
         RecyclerView view = (RecyclerView) v.findViewById(R.id.main_recyclerView);
         view.setHasFixedSize(true);
         view.setLayoutManager(new LinearLayoutManager(context));
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        RealmResults<MailData> results = realm.where(MailData.class).findAll();
         ArrayList<MainRecycleData> arr = new ArrayList<>();
-        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "/ kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
-        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회"," kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
-        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
-        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
-        arr.add(new MainRecycleData("주니어 소프트웨어 창작대회", "kotohana5706@edcan.kr", "예선접수 참여아 싫어", "asdfasdfasfsafsadfasd", new Date(System.currentTimeMillis()), false));
+        for(MailData data : results){
+            arr.add(new MainRecycleData("asdf", "asdf", data.getTitle(), data.getContent(), new Date(System.currentTimeMillis()), false));
+        }
         view.setAdapter(new CommonRecyclerAdapter(context, arr));
     }
 
