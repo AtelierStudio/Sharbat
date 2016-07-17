@@ -14,6 +14,7 @@ import javax.mail.Session;
 import javax.mail.Store;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import kr.edcan.sharbat.models.MailData;
 
 /**
@@ -26,8 +27,15 @@ public class MailParseHelper {
 
     public MailParseHelper(Context c) {
         this.c = c;
+        String[] credentials = {"pop.naver.com", "sedah1999", "intel_inside"};
+//        new MailParseClass().execute(credentials[0], credentials[1], credentials[2]);
         realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        RealmResults<MailData> realmResults = realm.where(MailData.class).findAll();
+        Log.e("asdf", realmResults.size()+"");
+        
     }
+
 
 
     class MailParseClass extends AsyncTask<String, String, Void> {
@@ -43,18 +51,14 @@ public class MailParseHelper {
 
         @Override
         protected Void doInBackground(String... strings) {
+            realm = Realm.getDefaultInstance();
             realm.beginTransaction();
-            host = "pop.naver.com";
-            username = "sedah1999";
-            password = "intel_inside";
             props = new Properties();
             session = Session.getDefaultInstance(props, null);
             try {
-                Log.e("asdf", "start");
                 Store store = session.getStore("pop3");
-                store.connect(host, username, password);
+                store.connect(strings[0], strings[1], strings[2]);
                 Folder folder = store.getFolder("INBOX");
-                Log.e("asdf", folder.exists() + "" + folder.getMessageCount() + "");
                 folder.open(Folder.READ_ONLY);
                 message = folder.getMessages();
                 for (int i = message.length - 1; i >= 0; i--) {
@@ -63,15 +67,13 @@ public class MailParseHelper {
                         MailData data = realm.createObject(MailData.class);
                         data.setTitle(message[i].getSubject());
                         data.setContent(message[i].getDescription());
+                        data.setReceivedDate(message[i].getReceivedDate());
                     } catch (MessagingException e) {
                         e.printStackTrace();
                     }
                 }
                 realm.commitTransaction();
                 store.close();
-                Date finalDate = new Date(System.currentTimeMillis());
-                int second = finalDate.getSeconds() - date.getSeconds();
-                Log.e("asdf", "총 " + second + "초 걸림");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

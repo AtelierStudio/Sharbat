@@ -21,6 +21,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import kr.edcan.sharbat.R;
 import kr.edcan.sharbat.models.MailData;
+import kr.edcan.sharbat.utils.MailParseHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -30,23 +31,15 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-//        new MailParseClass().execute();
-//        realm = Realm.getDefaultInstance();
-//        realm.beginTransaction();
-//        RealmResults<MailData> result2 = realm.where(MailData.class)
-//                .findAll();
-//        for(MailData d : result2){
-//            Log.e("asdf", d.getTitle());
-//        }
-//        realm.commitTransaction();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
-            }
-        }, 1000);
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                finish();
+//            }
+//        }, 1000);
+        new MailParseHelper(getApplicationContext());
     }
 
 }
