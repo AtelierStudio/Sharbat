@@ -1,6 +1,7 @@
 package kr.edcan.sharbat.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setDefault();
+        startActivity(new Intent(getApplicationContext(), DeveloperActivity.class));
     }
 
     private void setDefault() {
